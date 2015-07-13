@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+
+<script type="text/javascript">
+
+//objective is to check what is the big file that is showing, and then move to next big file
+//Get id of current big image
+var rotate = function () {
+	var currentBigImage = document.getElementById("bigImageId").getAttribute("src").substring(8,9);
+  	alert(bigFoot);
+ }
+
+window.onload = function (){
+	
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="sImagesId">
+	<img src='images/t1.jpg' id="s1">
+	<img src='images/t2.jpg' id="s2">
+	<img src='images/t3.jpg' id="s3">
+	<img src='images/t4.jpg' id="s4">
+	<img src='images/t5.jpg' id="s5">
+	<img src='images/t6.jpg' id="s6">
+</div>
+<img src="images/h3.jpg" id="bigImageId">
+<input type='button' id='stopId' value="Stop rotation"><input type='button' id='startId' value="Start rotation">
+
+
+
+</body>
+</html>

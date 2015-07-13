@@ -1,0 +1,105 @@
+<head>
+<script type="text/javascript">
+
+var $ = function(x){
+	return document.getElementById(x);
+}
+
+var userBlurHandle = function(){
+  //alert($("userId").value);
+  if($("userId").value.length >= 6){
+    $("userIdError").innerHTML = "*";
+  }
+}
+
+var validate = function(){
+	var flag = true;
+	//alert($("userId").value.length);
+	if($("userId").value.length < 6){
+    		$("userIdError").innerHTML = "Please add a username with at least 6 characters";
+		flag = false;
+	}
+	if($("ageId").value.length <1 || isNaN($("ageId").value)){
+    		$("ageIdError").innerHTML = "Please add age";
+		flag = false;
+	}
+	if($("emailId").value.length <8 || $("emailId").value.indexOf("@")<0){
+    		$("emailIdError").innerHTML = "Please add a valid email";
+		flag = false;
+	}
+
+	if(flag){
+		$('formId').submit();
+	}
+
+}
+
+var ageBlurHandle = function(){
+	if($("ageId").value.length>0 && !isNaN($("ageId").value)){
+		$("ageIdError").innerHTML = "*";
+	}
+}
+
+var addPhoneHandle = function(){
+	var divs = $("phones").getElementsByTagName("div");
+	var noOfDivs = divs.length;
+	var nextPhoneId = noOfDivs + 1;
+        //alert(nextPhoneId);
+
+	var div = document.createElement("div");
+	div.setAttribute("id","phone"+nextPhoneId);
+	$("phones").appendChild(div);
+
+	var label = document.createElement("label");
+	label.setAttribute("for", "phone"+nextPhoneId);
+	label.innerHTML = "Phone"+nextPhoneId;
+	div.appendChild(label);
+
+	var input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("name", "phone"+nextPhoneId);
+	input.setAttribute("id", "phone"+nextPhoneId);
+	div.appendChild(input);
+}
+
+window.onload = function(){
+	$("userId").onblur = userBlurHandle;
+	$("buttonId").onclick = validate;
+	$("ageId").onblur = ageBlurHandle;
+	$("addPhone").onclick = addPhoneHandle;
+}
+
+</script>
+</head>
+<body>
+
+<form method="post" id='formId' action="">
+
+<label for="userId">Username</label> 
+<input type="text" name="userName" id="userId">
+<span id="userIdError">*</span><br>
+
+<label for="ageId">Age</label> 
+<input type="text" name="ageName" id="ageId">
+<span id="ageIdError">*</span><br>
+
+<label for="emailId">email</label> 
+<input type="text" name="emailName" id="emailId">
+<span id="emailIdError">*</span><br>
+
+<section id="phones">
+ <div id='phone1'>
+  <label for='phone1'>Phone1</label>
+  <input type="text" name='phone1' id='phone1'>
+ </div>
+</section>
+<input type="button" id="addPhone" value="Add another phone"><br>
+
+<input type='button' id='buttonId' value='Go'>
+
+</form>
+
+</body>
+
+
+

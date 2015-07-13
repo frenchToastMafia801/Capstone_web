@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+// SYNTAX: var.name.equals.function.().{}
+
+//general dollar-sign function 
+var $ = function(x) {
+	return document.getElementById(x);
+}
+
+//Not all variables return something. What is the difference?
+
+
+
+var addEmailHandle = function() {
+	var emailDivs = $("emails").getElementsByTagName("div");
+//What in the syntax signals that this is an array?
+//Does .getElementsByTagName always mean you are making an array? Is it ever used for anything else?
+//Why use section? Could you do the same with divId?
+	var noOfEmailDivs = emailDivs.length;
+//Can you append .length to any variable?
+	var lastEmailNode = emailDivs[noOfEmailDivs -1];
+//What is a node? 
+	var lastEmailId = lastEmailNode.getAttribute("id").substring(5);
+//What is the substring argument doing here? How do I know if I need a substring of 5 or 3 or some other number?
+	var nextEmailId = parseInt(lastPhoneId) + 1;
+//Why parseInt if I'm feeding it an int in the first place?
+//Why wouldn't it work to say var nextEmailId = noOfEmailDivs +1
+	var newEmailDiv = document.createElement("div");
+	div.setAttribute("id","email"+nextEmailId);
+	$("emails").appendChild(div);
+//Will it cause any issues to call this variable newEmailDiv instead of div?
+	var label = document.createElement("label");
+	label.setAttribute("for", "email"+nextemailId);
+	label.innerHTML = "Email"+nextEmailId;
+	//What's going on here that can't be done with label.setAttribute?
+	div.appendChild(label);
+	
+	var input = document.createElement("input");
+	input.setAttribute("type","text");
+	input.setAttribute("name","email"+nextEmailId);
+	input.setAttribute("id", "email"+nextEmailId);
+	div.appendChild(input);
+	
+	var del = document.createElement("input");
+	del.setAttribute("type","button");
+	del.setAttribute("id","delete"+nextEmailId);
+	del.setAttribute("value","Delete email "+nextEmailId);
+	del.setAttribute("name","delete"+nextPhoneId);
+	div.appendChild(del);
+	del.onclick = deleteHandle;
+	//Why does this get added?
+
+}
+	
+	var deleteEmailHandle = function() {
+	var buttonClicked = this;
+	var id = buttonClicked.getAttribute("id").substring(6);
+//why substring six? What am I substringing?
+	var divToBeRemoved = $("email"+id);
+	alert(id);
+//What is this doing?
+	divToBeRemoved.parentElement.removeChild(divToBeRemoved);
+
+	//addEmailDiv.getAttribute("");
+	//addEmailDiv.addElement("");
+	//emailId.addChildNode("emailId2");
+	//I know I need to create the function. The function should have a way to add a new div and assign that new div a new id.
+}
+
+ //Once the function is created, I need to call the function
+ 
+
+ 
+ window.onload = function(){
+	 $("addEmail").onclick = addEmailHandle;
+	 //List of functions to call when window loads goes here?
+	 // emailId.onblur = addEmailHandle();
+	  //function to addEmailHandle
+	  //function to create a new email div
+	  //general $ function?
+	  
+	  //Do I need to add a delete email function call here?
+	  $("delete"+nextEmailId).onclick = deleteEmailHandle;
+ }
+ 
+</script>
+</head>
+
+<body>
+<!--2nd 20 min: I didn't remember how to proceed with the scripting up top, so I just added more sections
+-->
+
+<section id="fName"> 
+<div id="fName">
+<label for="fName"> First name </label>
+<input type="text" id="fName" name="fName">
+</div>
+</section>
+
+<section id="lName">
+<div id="lName">
+<label for "lName"> Last name </label>
+<input type="text" id="lName" name="lName">
+</div>
+</section>
+
+<section id="gender">
+<div id="gender">
+<label for="gender"> Gender </label> <br>
+Female<input type="radio" id="gender" name="gender" value="female"><br>
+Male<input type="radio" id="gender" name="gender" value="male"><br>
+</div>
+</section>
+
+
+<section id="phone"> 
+<div id="phone1">
+<label for="phone1"> Preferred phone number </label>
+<input type="text" id="phone1" name="phone1">
+</div>
+</section>
+
+<section id="emails"> 
+<!--Why section and div? What functionality does a section give you that a div doesn't?
+-->
+<div id="email1">
+<label for="email1"> Preferred email </label>
+<!--Why is the label tag the only on that uses for?
+-->
+Enter email <input type="text" id="email1" name="email1">
+<!--What is the $ object from this? $("email1")?
+-->
+<!--Why a name and an Id?
+-->
+</div>
+</section>
+<input type="button" id="addEmail" value="Add another email"><br>
+<!--Why is this outside the section? Wouldn't I want this button within the email section?
+-->
+
+<input type="submit" value="submit">
+
+</body>
+</html>
+<!--Do I add php anywhere in here? Should it go at the top or at the bottom?-->

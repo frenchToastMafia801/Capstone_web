@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript">
+
+var $ = function(x) {
+return document.getElementById(x);
+}
+
+var userBlurHandle = function () 
+{
+	if($("userId").value.length >=6) 
+	{
+	$("userIdError").innerHTML = "*";
+	}
+}
+
+var validate = function () {
+	var flag = true;
+	if ($("userId").value.length < 6) {
+		$("userIdError").innerHTML = "Please add a username with at least six characters";
+		flag = false;
+	}
+	if ($("userAge").value.length <1 || isNaN($("userAge").value)) {
+		$("userAgeError").innerHTML = "Please add an age";
+		flag = false;
+	}
+	
+	if ($("userEmail").value.length <8 || $("userEmail").value.indexOf("@")<0) {
+		$("userEmailError").innerHTML = "Please add an email";
+		flag = false;
+	}
+	if (flag) {
+		$("formId").submit();
+	}
+}
+
+var ageBlurHandle = function(){
+	if($("ageId").value.length>0 && !isNaN($("ageId").value)){
+		$("ageIdError").innerHTML = "*";
+	}
+}
+
+
+var addPhoneHandle = function(){
+	var div = document.createElement("div");
+	div.setAttribute("id","phone2");
+	$("phones").appendChild(div);
+}
+
+var addEmailHandle = function(){
+	var div = document.createElement("div");
+	div.setAttribute("id","email2");
+	$("emails").appendChild(div);
+}
+
+window.onload = function(){
+	$("userId").onblur = userBlurHandle;
+	$("buttonId").onclick = validate;
+	$("userAge").onblur = ageBlurHandle;
+	$("addPhone").onclick = addPhoneHandle;
+	$("addEmail").onclick = addEmailHandle;
+}
+</script>
+<title> Feb 24 </title>
+</head>
+
+<body>
+<form method="post" id='formId' action="">
+
+<label for="userId"> username </label>  
+
+<input type="text" name="username" id="userId">
+<span id="userIdError">*</span>
+<br>
+
+<label for="userAge"> Age </label>
+<input type="text" name="age" id="userAge">
+<span id="userAgeError">*</span>
+<br>
+
+<section id="emails">
+<div id="email1">
+
+<label for="userEmail"> Email </label>
+<input type="text" name="email" id="userEmail">
+<span id="userEmailError">*</span>
+<br>
+</div>
+</section>
+
+<input type="button" id="addEmail" value="Add another email"><br>
+
+<section id="phones">
+<div id="phone1">
+<label for="phone1">phone1</label>
+<input type="text" name"phone1" id="phone1">
+</div>
+</section>
+<input type="button" id="addPhone" value="Add another phone"><br>
+
+<input type="button" id="buttonId" value="go">
+
+</form>
+</body>
+</html>

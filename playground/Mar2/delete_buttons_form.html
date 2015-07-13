@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script type="text/javascript">
+
+var $ = function(x){ //whenever you have to call any element by its ID, we can just say $(idvalue) and the $ fetches anything
+	return document.getElementById(x);
+}
+
+var userBlurHandle = function(){
+  //alert($("userId").value);
+  if($("userId").value.length >= 6){
+    $("userIdError").innerHTML = "*"; //in innerHTML --> HTML must be in all caps
+  }
+}
+
+var validate = function(){
+	var flag = true;
+	//alert($("userId").value.length);
+	if($("userId").value.length < 6){
+    		$("userIdError").innerHTML = "Please add a username with at least 6 characters";
+		flag = false;
+	}
+	if($("ageId").value.length <1 || isNaN($("ageId").value)){
+    		$("ageIdError").innerHTML = "Please add age";
+		flag = false;
+	}
+	if($("emailId").value.length <8 || $("emailId").value.indexOf("@")<0){
+    		$("emailIdError").innerHTML = "Please add a valid email";
+		flag = false;
+	}
+
+	if(flag){
+		$('formId').submit();
+	}
+
+}
+
+var ageBlurHandle = function(){
+	if($("ageId").value.length>0 && !isNaN($("ageId").value)){
+		$("ageIdError").innerHTML = "*";
+	}
+}
+
+var addPhoneHandle = function(){
+	var divs = $("phones").getElementsByTagName("div"); //captures all the divs and puts them in an array
+	var noOfDivs = divs.length;
+	var lastPhoneNode = divs[noOfDivs -1];  //same as noOfDvis -1
+	var lastPhoneId = lastPhoneNode.getAttribute("id").substring(5);
+	var nextPhoneId = parseInt(lastPhoneId) + 1;
+	//alert(id);
+	//var nextPhoneId = noOfDivs + 1;
+    //alert(nextPhoneId);
+
+	var div = document.createElement("div");
+	div.setAttribute("id","phone"+nextPhoneId);
+	$("phones").appendChild(div);
+
+	var label = document.createElement("label");
+	label.setAttribute("for", "phone"+nextPhoneId);
+	label.innerHTML = "Phone"+nextPhoneId;
+	div.appendChild(label);
+
+	var input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("name", "phone"+nextPhoneId);
+	input.setAttribute("id", "phone"+nextPhoneId);
+	div.appendChild(input);
+	
+	var del = document.createElement("input");
+	del.setAttribute("type","button");
+	del.setAttribute("id","delete"+nextPhoneId);
+	del.setAttribute("value","Delete phone "+nextPhoneId);
+	del.setAttribute("name","delete"+nextPhoneId);
+	div.appendChild(del);
+	del.onclick = deleteHandle;
+	//to pass parameter(s) in event handler you need to enclose the handle inside an anonymous function;
+	//del.onclick = function(){deleteHandle(nextPhoneId);}
+	//Alternatively, we can use "this" object to identify the button clicked in deleteHandle;	
+}
+
+var deleteHandle = function() {
+	var buttonClicked = this;
+	var id = buttonClicked.getAttribute("id").substring(6);
+	var divToBeRemoved = $("phone"+id);
+	//var id = buttonClicked.getAttribute("id");
+	alert(id);
+	//buttonClicked.parentElement.removeChild(buttonClicked);
+	divToBeRemoved.parentElement.removeChild(divToBeRemoved);
+}
+
+window.onload = function(){
+	$("userId").onblur = userBlurHandle; //oblur event is when you move away from the textbox after clicking
+	$("buttonId").onclick = validate;
+	$("ageId").onblur = ageBlurHandle;
+	$("addPhone").onclick = addPhoneHandle;
+}
+
+</script>
+</head>
+
+<body>
+<form method="post" id='formId' action="">
+<!--ID is unique and cannot repeat, unlike Name
+-->
+
+<label for="userId">Username</label> 
+<!--Why add a label? Because it increases the active area which is handy for mobile apps. Adds semantic value and metadata for search engines
+-->
+
+<input type="text" name="userName" id="userId">
+<span id="userIdError">*</span><br>
+<!--Why add a span? In case you want to show an error, use the span to replace the star or text note with an error message
+-->
+<!--Javascript validations are easy to circumvent
+-->
+
+<label for="ageId">Age</label> 
+<input type="text" name="ageName" id="ageId">
+<span id="ageIdError">*</span><br>
+
+<label for="emailId">email</label> 
+<input type="text" name="emailName" id="emailId">
+<span id="emailIdError">*</span><br>
+
+<section id="phones">
+ <div id='phone1'>
+  <label for='phone1'>Phone1</label>
+  <input type="text" name='phone1' id='phone1'>
+ </div>
+</section>
+<input type="button" id="addPhone" value="Add another phone"><br>
+
+<input type='button' id='buttonId' value='Go'>
+
+</form>
+</body>
+</html>

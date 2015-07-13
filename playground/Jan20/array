@@ -1,0 +1,16 @@
+<?php
+
+$x = array (
+	0 => "red",
+	1 => "blue",
+	2 => "green"
+	);
+	
+$colorCount = count($x);
+for( $i=0; $i<$colorCount; $i++)
+	{echo $x[$i];} 
+
+foreach ($x as $key =>$value)
+	{echo "index name is $key and the value it stores is $value <br>";}
+
+?>

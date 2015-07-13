@@ -1,0 +1,162 @@
+Review
+--Mar 2: delete_buttons_form
+--Mar 2: connect
+--Mar 2: ajax
+
+To create a form 
+1. Choose a method (Get or Post)
+2. Choose an ID for the form
+3. Choose an action (or a landing page)
+
+To create a form section:
+1. Add a section with a sectionID
+2. Add a div with a divID
+3. Add an input box with an ID
+4. Add a label for that input box (for="ID")
+
+To add an * to a section to indicate required value
+1. start a span
+2. Add an id for the span --> id="userIdError"
+3. Add an * between span tags
+
+To make an add button:
+1. Outside the div, add an input button with an ID that you can grab later
+
+To add javascript:
+1. Add script tag
+2. Tell the type of script text/javascript
+
+To create a coding shortcut that substitute $ for document.getElementById
+1. name the function $
+2. function(x)
+3. Add a return statement: document.getElementById(x);
+
+To create a validation alert based on length
+1. establish a variable name and set it as a function -->  var variableName = function(){
+2. Create an IF statement to check for length -->  if($("elementId").value.length >= 6)
+3. Show an error within the innerHTML if IF statement is met --> $("userIdError").innerHTML = "*"
+
+To create a validation function
+1. establish a variable name and set it as a function --> var validate = function(){
+2. set the flag to true --> var flag = true;
+3. add an IF function with an innerHTML error message. Add multiple IF functions if want to incorporate multiple errors
+	if($("userId").value.length < 6){
+    		$("userIdError").innerHTML = "Please add a username with at least 6 characters";
+		flag = false;
+	}
+4. Add the submit condition, dependent on the flag (true or false)
+	if(flag){
+		$('formId').submit();
+		}
+
+To create a simple event handler
+1. establish a variable and set it as a function
+2. create and enforce an IF statement --> if($("ageId").value.length>0 && !isNaN($("ageId").value)){
+3. add an error or * to the innerHTML of an element --> $("ageIdError").innerHTML = "*";
+
+To add a div (create an event handler that adds a div)
+1. establish a variable and set it as a function --> var addEventHandler = function(){
+2. create an array from all the divs in the section (important if you might end up with 2+ divs) 
+--> var sectionDivArray = $("sectionId").getElementsByTagName("div");
+2a. count the number of divs in the array so you can provide accurate IDs later --> var noOfDivs = sectionDivArray.length;
+2b. use that count to create a variable for the next div's Id --> var nextDivId = noOfDivs + 1;
+3. establish a variable that creates a new div--> var name = document.createElement("div");
+3a. use .setAttribute to add any necessary attributes to your new element --> div.setAttribute("id","nameofID");
+3b. append the new div to the section --> $("sectionId").appendChild(div);
+4. create an input variable with all necessary attributes
+4a. name the variable and set it to the document.createElement("TagOfElementToCreate");
+4b. set whatever attributes are required --> variableName.setAttribute("HTMLTag", "valueofHTMLTag");
+4c. add the final command to append the variable to the div --> div.appendChild(variab);
+5. Create a label variable with all necessary attributes (just like the input variable)
+5a. set the FOR attribute for the label --> label.setAttribute("for", "nameOfDiv"+nextDivId);
+5b. label.innerHTML = "Phone"+nextPhoneId;
+5c.	append the new label to the section -->div.appendChild(label);
+
+Have all functions load with the window
+1. Create the window.onload function
+2. call the functions and event handlers by the element they pertain to --> $("userId").onblur = userBlurHandle;
+2a. use the $ getElementById shortcut
+2b. list the relevant elementId in parentheses
+2c. add an .onblur or .onclick notation for the desired behavior
+2d = the relevant function
+
+To incorporate CSS
+1. add style tags to page head
+2. add behavior to divs with dot operator --> div.show {  OR  div.hide {
+3. add display behavior if you want to show or hide -->  display:block;  OR  display:none;
+
+To create Javascript show/hide behaviors
+1. make sure you have added the appropriate css
+2. create an event handler function to show
+2a. name the variable and establish the function
+2b. set the show or hide attribute for the divId --> $("divId").setAttribute("class", "show");
+
+To fetch results (product names, images, and descriptions) based on search terms (PHP)
+1. connect to the product database -->  include("connect.php");
+2. set up a search term variable, but leave it blank and use an IF statement grab the search term once it is filled in
+	$searchTerm="";
+	if(!empty($_GET['searchTerm'])) {
+	$searchTerm = $_GET['searchTerm'];
+	}
+3. use $sql variable to create a database query based on search terms
+	$sql = "SELECT id, name, price FROM products WHERE (name like '%$searchTerm%' OR description like '%$searchTerm%')";
+4. use mysqli_query with $link and $sql to actually query the database. Store results in a variable
+	$results = mysqli_query($link, $sql);
+5. count the rows returned from the query in preparation to list them on the page
+	$count = mysqli_num_rows($results);
+6. create an array for the rows
+6a. name the array --> $rows = array();
+6b. start a for loop to iterate through array --> for ($i=0; $i<$count;$i++){
+6c. list the relevant details for each product (iteration) returned from query results
+--> list($id, $name, $price) = mysqli_fetch_array($results);
+6d. assign rows to each entity returned from the query
+	$rows[$i]["id"] = $id;
+	$rows[$i]["name"] = $name;
+	$rows[$i]["price"] = $price;
+7. Display the rows using json --> echo json_encode($rows);
+
+AJAX --> embedded within javascript
+
+to create an XMLHttpRequest object
+1. establish a variable and assign it to a function --> var createXMLHttp = function(){
+2. Not sure what this is doing?  Is it there to account for older browsers?
+  if(window.XMLHttpRequest){
+      xHttp = new XMLHttpRequest();
+  }else{
+      xHttp = new ActiveXObject("Microsoft/XMLHttp");
+  } 
+  return xHttp;
+} 
+
+To create a search box event handler utilizing Ajax for asynchronous response
+1. name the variable and establish the function --> var searchHandle = function(){
+2. add the xHttp variable to call Ajax function  --> var xHttp = createXMLHttp();
+3. grab the search term --> var sTerm = $("sTerm").value;
+4. grade the search category --> var sCat = $("sCat").value;
+5. establish a variable for the resulting search URL --> var url = "searchWS.php?sTerm="+sTerm+"&sCat="+sCat;
+5a. In case the method is post, then instead of appending variables to webservice url, paste variables and value inside send parenthesis --> xHttp.send();
+6. Open the connection to your webservice -->  xHttp.open("GET",url);
+6a. 1st parameter method: get or post
+6b. 2nd parameter web service name;
+6c. 3rd parameter (optional) is True for asynchronous & False for Synchronous request
+7. Create a function that checks readyState and produces a table of search results
+7a. establish the function --> xHttp.onreadystatechange = function(){
+7b. start the IF condition -->  if(xHttp.readyState ==4){
+7c. get your search results. JSON.parse will change the response from JSON to array .responsText returns all results. -->  var rows = JSON.parse(xHttp.responseText);
+7d.  start a for loop to iterate through JSON array and produce a table of results --> for(i=0; i<rows.length;i++){
+7di. establish variables for search results table contents
+		   var id = rows[i]["id"];
+		   var name = rows[i]["name"];
+		   var price = rows[i]["price"];
+7dii. create the tr and td with the necessary attributes
+		   	var tr = document.createElement("tr");
+			var tdid = document.createElement("td");
+			tdid.innerHTML = id;
+			tr.appendChild(tdid);
+			var tdname = document.createElement("td");
+			tdname.innerHTML = name;
+			tr.appendChild(tdname);
+			var tdprice = document.createElement("td");
+			tdprice.innerHTML = price;
+			tr.appendChild(tdprice);
+			$("tbodyId").appendChild(tr);

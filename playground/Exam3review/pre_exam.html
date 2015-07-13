@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script type="text/javascript">
+
+var usernameNotEmptyValidation = function () {
+	var flag = true;
+	if (document.getElementById("userId3").value.length < 1) {
+		document.getElementById("userErrorId3").innerHTML = "Please add a username";
+		flag =false;
+	}
+	if(flag) {
+		document.getElementById("buttonId3").submit();
+	}
+	
+}
+
+var createXMLHttp = function(){
+  if(window.XMLHttpRequest){
+      xHttp = new XMLHttpRequest();
+  }else{
+      xHttp = new ActiveXObject("Microsoft/XMLHttp");
+  } 
+  return xHttp;
+} 
+
+var usernameAvailabilityCheck = function () {
+	var xHttp = createXMLHttp();
+  	var usernamePost = document.getElementById("userId3").value;
+	var url = "pre_exam_webservice.php";
+	xHttp.open("POST", "pre_exam_webservice.php");
+	xHttp.send("username="+usernamePost);
+	xHttp.onreadystatechange = function (){
+		if (xHttp.readyState == 4){
+			var usernameCheck = xHttp.responseText; 
+			if (usernameCheck == 1) {
+			document.getElementById("userErrorId3").innerHTML = "That username is already in use. Please choose another.";
+			}
+		}
+	
+	}
+}
+/*
+Copy the following html code and do 3 tasks:
+Onblur from user textbox check if username is available and show corresponding message
+on click of add phone button, add a new phone div. Do not worry about adding a delete button. 
+*/
+
+
+var addNewPhoneDiv = function() {
+	var phoneDivArray = document.getElementById("phonesId").getElementsByTagName("div");
+	var numberOfDivsInArray = phoneDivArray.length;
+	var newPhoneDivId = numberOfDivsInArray +1;
+	
+	var newPhoneDiv = document.createElement("div");
+	newPhoneDiv.setAttribute("id", "phoneDivId"+newPhoneDivId);
+	document.getElementById("phonesId").appendChild(newPhoneDiv);
+	
+	var input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("name", "phoneDivId"+newPhoneDivId);
+	input.setAttribute("id", "phoneDivId"+newPhoneDivId);
+	newPhoneDiv.appendChild(input);
+	
+	var label = document.createElement("label");
+	label.setAttribute("for", "phoneDivId"+newPhoneDivId);
+	label.innerHTML = "phoneDivId"+newPhoneDivId;
+	newPhoneDiv.appendChild(label);
+}
+
+
+window.onload = function () {
+	document.getElementById("userId3").onblur = usernameNotEmptyValidation;
+	document.getElementById("userId3").onblur = usernameAvailabilityCheck;
+	document.getElementById("phoneDivId1").onclick = addNewPhoneDiv;
+	
+}
+
+</script>
+</head>
+
+<body>
+
+<form method='post' action='' id="formId3">
+
+<label for="userId3">Username</label>
+<input type="text" name='username' id='userId3'>
+<span id='userErrorId3'>*</span>
+
+<input type="button" value="Add phones" id="buttonId3"><br>
+<div id="phonesId">
+<div id="phoneDivId1">
+<label>Phone 1</label>
+<input type="text" name='phone1' id='phoneId1'>
+</div>
+</div>
+
+<input type="button" value="Go" id="buttonId3">
+</form>
+
+</body>
+</html>

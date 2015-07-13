@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+div.show {
+	display:block;
+}
+div.hide {
+	display:none;
+}
+</style>
+<script type="text/javascript">
+
+var $ = function(x){ 
+	return document.getElementById(x);
+}
+
+var showHandle = function() {
+	$("divId").setAttribute("class", "show");
+}
+
+var hideHandle = function() {
+	$("divId").setAttribute("class", "hide");
+}
+
+window.onload = function(){
+	$("show").onclick = showHandle;
+	$("hide").onclick = hideHandle;
+}
+
+</script>
+</head>
+
+<body>
+
+<label for="show">Show</label>
+<input type="radio" id="show" name="status" value="1"><br />
+<label for="hide">Hide</label>
+<input type="radio" id="hide" name="status" value="0"><br />
+
+<div class="hide" id="divId">
+<form method="post" id='formId' action="">
+
+<label for="userId">Username</label> 
+
+<input type="text" name="userName" id="userId">
+<span id="userIdError">*</span><br>
+
+<label for="ageId">Age</label> 
+<input type="text" name="ageName" id="ageId">
+<span id="ageIdError">*</span><br>
+
+<label for="emailId">email</label> 
+<input type="text" name="emailName" id="emailId">
+<span id="emailIdError">*</span><br>
+
+<section id="phones">
+ <div id='phone1'>
+  <label for='phone1'>Phone1</label>
+  <input type="text" name='phone1' id='phone1'>
+ </div>
+</section>
+<input type="button" id="addPhone" value="Add another phone"><br>
+
+<input type='button' id='buttonId' value='Go'>
+
+</form>
+</div>
+</body>
+</html>

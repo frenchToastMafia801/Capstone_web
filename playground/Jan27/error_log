@@ -1,0 +1,41 @@
+[27-Jan-2015 20:07:21 America/Denver] PHP Parse error:  syntax error, unexpected '>' in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 10
+[27-Jan-2015 20:07:40 America/Denver] PHP Parse error:  syntax error, unexpected '>' in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 10
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: id__col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: id__col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: id__col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: id__col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:14:35 America/Denver] PHP Notice:  Undefined variable: col1 in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:15:28 America/Denver] PHP Notice:  Undefined variable: id__title in /home2/writerbr/public_html/6465playground/Jan27/select.php on line 14
+[27-Jan-2015 20:27:10 America/Denver] PHP Parse error:  syntax error, unexpected '<' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 3
+[27-Jan-2015 20:27:36 America/Denver] PHP Notice:  Array to string conversion in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 29
+[27-Jan-2015 20:27:45 America/Denver] PHP Notice:  Array to string conversion in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 29
+[27-Jan-2015 20:29:14 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 26
+[27-Jan-2015 20:29:14 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 27
+[27-Jan-2015 20:29:21 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 26
+[27-Jan-2015 20:29:21 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 27
+[27-Jan-2015 20:31:55 America/Denver] PHP Parse error:  syntax error, unexpected '<' in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 3
+[27-Jan-2015 20:32:24 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 5
+[27-Jan-2015 20:32:24 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:38:05 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 5
+[27-Jan-2015 20:38:05 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:40:25 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:40:25 America/Denver] PHP Notice:  Undefined index: username in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:40:25 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 7
+[27-Jan-2015 20:40:25 America/Denver] PHP Notice:  Undefined index: password in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 7
+[27-Jan-2015 20:40:35 America/Denver] PHP Notice:  Use of undefined constant username - assumed 'username' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:40:35 America/Denver] PHP Notice:  Use of undefined constant password - assumed 'password' in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 7
+[27-Jan-2015 20:42:32 America/Denver] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 20:45:40 America/Denver] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home2/writerbr/public_html/6465playground/Jan27/authenticate2.php on line 6
+[27-Jan-2015 21:07:32 America/Denver] PHP Notice:  Undefined index: username in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 28
+[27-Jan-2015 21:07:32 America/Denver] PHP Notice:  Undefined index: password in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 29
+[27-Jan-2015 21:48:20 America/Denver] PHP Notice:  Undefined index: username in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 24
+[27-Jan-2015 21:48:20 America/Denver] PHP Notice:  Undefined index: password in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 25
+[27-Jan-2015 21:49:11 America/Denver] PHP Notice:  Undefined index: username in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 24
+[27-Jan-2015 21:49:11 America/Denver] PHP Notice:  Undefined index: password in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 25
+[27-Jan-2015 21:54:20 America/Denver] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, string given in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 32
+[27-Jan-2015 21:54:30 America/Denver] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, string given in /home2/writerbr/public_html/6465playground/Jan27/authenticate_select.php on line 32
+[27-Jan-2015 22:04:12 America/Denver] PHP Notice:  Undefined index: username in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 24
+[27-Jan-2015 22:04:12 America/Denver] PHP Notice:  Undefined index: password in /home2/writerbr/public_html/6465playground/Jan27/authenticate.php on line 25
