@@ -11,25 +11,31 @@ include("connect.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title></title>
     <link rel="stylesheet" href="css/main.css">
-<!--    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1.1", {packages:["table"]});
-      google.setOnLoadCallback(drawTable);
+    
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","getuser.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
 
-      function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'First name');
-        data.addColumn('string', 'Last name');
-        data.addColumn('string', 'Student ID');
-        data.addRows([
-          [$firstName,  $lastName, $studentId],
-        ]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-      }
-    </script>-->
     <script src="js/jquery-1.11.3.min.js"></script>
     <script type = 'text/javascript' src='googleGraphs.js'></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -59,40 +65,69 @@ include("connect.php");
     </script>
     </head>
     <body>
+                    <?php 
+					$searchStudent="";
+					if(!empty($_GET['searchStudent']))
+					{
+						$searchStudent = $_GET['searchStudent'];
+					}
+					
+					$sql1 = "SELECT name.givenName, name.familyName, k12student.studentId FROM name INNER JOIN k12student ON name.nameId = k12student.name WHERE (name.givenName like '%$searchStudent%' OR name.familyName like '%$searchStudent%')";
+					
+					$results1 = mysqli_query($link, $sql1);
+					echo (!$results1?die(mysqli_error($link). "<br>$sql1"): ""); /*The "worked" note can be deleted once everything is finished and working*/
+					$count = mysqli_num_rows($results1);
+					for ($i=0; $i<$count;$i++)
+					{
+					list($firstName, $lastName, $studentId) = mysqli_fetch_array($results1);
+					}
+					/*echo $firstName, $lastName, $studentId; THIS NEEDS TO BE DELETED AND IS ONLY FOR CHECKING THE SEARCH RESULTS*/
+					
+					$sql2 = "SELECT demographics.birthDate, demographics.gender, demographics.image FROM (name INNER JOIN k12student ON name.nameId = k12student.name) INNER JOIN demographics ON k12student.personId = demographics.personId WHERE (((k12student.studentId)=$studentId));";
+					
+					$results2 = mysqli_query($link, $sql2);
+					echo (!$results2?die(mysqli_error($link). "<br>$sql2"): ""); /*The "worked" note can be deleted once everything is finished and working*/
+					$count = mysqli_num_rows($results2);
+					for ($i=0; $i<$count;$i++)
+					{
+					list($birthdate, $gender, $image) = mysqli_fetch_array($results2);
+					}
+					?>
     <div id="header"> <img src="img/header.jpg" /> </div>
     <!--End of header-->
     <div id="wrapper">
         <div id="column1">
           <div class="tabs"><!--REVISED FROM id="profile"-->
             <ul class="tab-links"><!--REVISED FROM class="nav"-->
-              <li class="profilestudentname">FirstName LastName</li>
+              <li class="profilestudentname"><?php echo $firstName; ?> <?php echo $lastName; ?></li>
               <li><a href="#tab1">Student Information</a></li>
               <li><a href="#tab2">Enrollment</a></li>
               <li><a href="#tab3">Groups</a></li>
             </ul>
             <div class="tabs">
               <div class="profiletab-content">
-                <div id="tab1" class="tab active"> <img src="img/cat.JPG" alt="image" height="130" width="110">
+                <div id="tab1" class="tab active"> <img src="<?php echo $image; ?>" alt="image" height="150" width="110">
+
                   <table align="left" class="table1">
                     <tr>
                       <th>First Name:</th>
-                      <td>Tardar </td>
+                      <td><?php echo $firstName; ?></td>
                     </tr>
                     <tr>
                       <th>Last Name:</th>
-                      <td>Sauce</td>
+                      <td><?php echo $lastName; ?></td>
                     </tr>
                     <tr>
                       <th>SID:</th>
-                      <td>000-000</td>
+                      <td><?php echo $studentId; ?></td>
                     </tr>
                     <tr>
                       <th>Born:</th>
-                      <td> April 4, 2012</td>
+                      <td><?php echo $birthdate; ?></td>
                     </tr>
                     <tr>
                       <th>Gender:</th>
-                      <td>Female</td>
+                      <td><?php echo $gender; ?></td>
                     </tr>
                   </table>
                 </div>
@@ -180,24 +215,7 @@ include("connect.php");
                 <input type="text" name="searchStudent" value ="<?php echo $searchStudent;?>">
                 <input type="submit" value="Search">
                 </form>
-                <?php 
-					$searchStudent="";
-					if(!empty($_GET['searchStudent']))
-					{
-						$searchTerm = $_GET['searchStudent'];
-					}
-					
-					$sql = "SELECT name.givenName, name.familyName, k12student.studentId FROM name INNER JOIN k12student ON name.nameId = k12student.name WHERE (name.givenName like '%$searchStudent%' OR name.familyName like '%$searchStudent%')";
-					
-					$results = mysqli_query($link, $sql);
-					echo (!$results?die(mysqli_error($link). "<br>$sql"): "worked<br>"); /*The "worked" note can be deleted once everything is finished and working*/
-					$count = mysqli_num_rows($results);
-					for ($i=0; $i<$count;$i++)
-					{
-					list($firstName, $lastName, $studentId) = mysqli_fetch_array($results);
-					}
-					echo $studentId; /*THIS NEEDS TO BE DELETED AND IS ONLY FOR CHECKING THE SEARCH RESULTS*/
-					?>
+                
             </div>
             <p class="chromeheader">Assessment </p>
             <div class="chromebody">

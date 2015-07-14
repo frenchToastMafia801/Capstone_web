@@ -9,6 +9,8 @@
 <file name="googleGraphs.js" server="www.compapp.org/public_html/" local="130812197126799186" remote="130812234000000000" Dst="2" />
 <file name="index.html" server="www.compapp.org/public_html/" local="130811177119597888" remote="130811214000000000" Dst="2" />
 <file name="desktop.ini" server="www.compapp.org/public_html/" local="130811177059663782" remote="130811214000000000" Dst="2" />
-<file name="connect.php" server="www.compapp.org/public_html/" local="130812203795174071" remote="130812239400000000" Dst="2" />
-<file name="test.php" server="www.compapp.org/public_html/" local="130812209702605647" remote="130812245400000000" Dst="2" />
+<file name="connect.php" server="www.compapp.org/public_html/" local="130813134010000000" remote="130813170600000000" Dst="2" />
+<file name="test.php" server="www.compapp.org/public_html/" local="130813175500306475" remote="130813211400000000" Dst="2" />
+<file name="getscores.php" server="www.compapp.org/public_html/" local="130813175256332520" remote="130813211400000000" Dst="2" />
+<file name="postscores.html" server="www.compapp.org/public_html/" local="130813170748114665" remote="130813206600000000" Dst="2" />
 </dwsync>
